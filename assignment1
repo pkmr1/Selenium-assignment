@@ -1,0 +1,47 @@
+package sel_assign;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class assignment_1 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+
+		System.setProperty("webdriver.chromedriver","chromedriver.exe");
+		 
+		WebDriver driver = new ChromeDriver(); 
+		driver.manage().window().maximize();
+		//open the url
+		 driver.get("http://10.207.182.108:81/opencart/");
+		 
+		WebDriverWait wait = new WebDriverWait(driver,20000);
+		
+		 
+		 //navigate to new link for opencart
+		 
+		 driver.findElement(By.xpath("//a[@href=\"http://spezicoe.wipro.com:81/opencart1/\"]")).click();
+		 Thread.sleep(5000);
+		ArrayList<String>windowHandles=new ArrayList<String>(driver.getWindowHandles());
+		driver.switchTo().window(windowHandles.get(1));
+		// wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='Your Store']")));
+		  boolean visib=driver.findElement(By.xpath("//a[text()='Your Store']")).isDisplayed();
+		  System.out.println("visib"+visib);
+		  driver.findElement(By.xpath("//body")).click();
+		  driver.findElement(By.xpath("//a[text()='Your Store']")).click();
+		  boolean  xyz=driver.findElement(By.xpath("//div[@class='btn-group btn-block']//button")).isDisplayed();
+		  System.out.println("its visibiloity"+xyz);
+		 //driver.findElement(By.xpath("//div[@class='btn-group btn-block']//button")).click();
+		 driver.findElement(By.xpath("//span[@class='caret']")).click();
+		 
+		 driver.findElement(By.xpath("//ul[@class=\"dropdown-menu dropdown-menu-right\"]/li[2]/a")).click();
+	//	
+		 driver.close();
+	}
